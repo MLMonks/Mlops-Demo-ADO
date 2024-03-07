@@ -18,8 +18,8 @@ pool:
 
 resources:
   repositories:
-    - repository: mlops-templates # Template Repo
-      name: mlops-templates
+    - repository: Mlops-Demo-ADO # Template Repo
+      name: Mlops-Demo-ADO
       type: git
       ref: main
 
@@ -39,12 +39,12 @@ stages:
               script: |
                 set -e
                 mkdir "$(Build.Repository.Name)"
-                mkdir "mlops-templates"
-          - checkout: mlops-templates
+                mkdir "Mlops-Demo-ADO"
+          - checkout: Mlops-Demo-ADO
             path: s/templates/
-          - template: templates/infra/create-resource-group.yml@mlops-templates
-          - template: templates/infra/create-storage-account.yml@mlops-templates
-          - template: templates/infra/create-storage-container.yml@mlops-templates
+          - template: templates/infra/create-resource-group.yml@Mlops-Demo-ADO
+          - template: templates/infra/create-storage-account.yml@Mlops-Demo-ADO
+          - template: templates/infra/create-storage-container.yml@Mlops-Demo-ADO
   - stage: DeployAzureMachineLearningRG
     displayName: Deploy AML Workspace
     jobs:
@@ -60,12 +60,12 @@ stages:
               script: |
                 set -e
                 mkdir "$(Build.Repository.Name)"
-                mkdir "mlops-templates"
-          - checkout: mlops-templates
+                mkdir "Mlops-Demo-ADO"
+          - checkout: Mlops-Demo-ADO
             path: s/templates/
-          - template: templates/infra/create-sp-variables.yml@mlops-templates
-          - template: templates/infra/install-terraform.yml@mlops-templates
-          - template: templates/infra/run-terraform-init.yml@mlops-templates
-          - template: templates/infra/run-terraform-validate.yml@mlops-templates
-          - template: templates/infra/run-terraform-plan.yml@mlops-templates
-          - template: templates/infra/run-terraform-apply.yml@mlops-templates
+          - template: templates/infra/create-sp-variables.yml@Mlops-Demo-ADO
+          - template: templates/infra/install-terraform.yml@Mlops-Demo-ADO
+          - template: templates/infra/run-terraform-init.yml@Mlops-Demo-ADO
+          - template: templates/infra/run-terraform-validate.yml@Mlops-Demo-ADO
+          - template: templates/infra/run-terraform-plan.yml@Mlops-Demo-ADO
+          - template: templates/infra/run-terraform-apply.yml@Mlops-Demo-ADO
